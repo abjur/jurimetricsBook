@@ -4,9 +4,11 @@
 
 - Author: Lee Loevinger
 - Link: http://scholarship.law.duke.edu/cgi/viewcontent.cgi?article=2945&context=lcp
+- Year: 1959
+- keywords: jurimetrics, theory of the law, lee loevinger, science
 
 O artigo define Jurimetria como aplicação de metodologia científica no campo da lei. O autor deixa claro que existe um desconforto na definição pura de qualquer área do conhecimento, mas sempre é possível dizer pragmaticamente o que os praticantes de um certo estudo fazem. Nas palavras do próprio Lee, o que um jurimetrista faz é
 
-> Jurimetrics is concerned with such matters as the quantitative analysis of judicialbehavior, the application of communication and information theory to legal ex-pression, the use of mathematical logic in law, the retrieval of legal data by electronicand mechanical means, and the formulation of a calculus of legal predictability. Jurisprudence is primarily an undertaking of rationalism; jurimetrics is an effort toutilize the methods of science in the field of law. 
+> Jurimetrics is concerned with such matters as the quantitative analysis of judicial behavior, the application of communication and information theory to legal expression, the use of mathematical logic in law, the retrieval of legal data by electronic and mechanical means, and the formulation of a calculus of legal predictability. Jurisprudence is primarily an undertaking of rationalism; jurimetrics is an effort to utilize the methods of science in the field of law. 
 
 Depois ele dá uns exemplos que vou discutir quando eu tiver mais tempo.
