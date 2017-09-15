@@ -1,0 +1,11 @@
+# Introduction
+
+O conteúdo desse livro será escrito parte em portugês e parte em inglês. A justificativa dos autores sempre será "escrevi como me senti mais confortável".
+
+How to cite an article [@Weinstein1997]. How to cite a package [@R-bookdown].
+
+## Who we are
+
+## What do we look for on our readings
+
+## How to read this book
