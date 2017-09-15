@@ -1,0 +1,73 @@
+---
+title: "Book Example"
+author: "Associação Brasileira de Jurimetria"
+date: "`r format(Sys.Date(), '%d de %B de %Y')`"
+documentclass: report
+bibliography: [bibliography/book.bib, bibliography/packages.bib]
+biblio-style: apalike
+link-citations: yes
+colorlinks: yes 
+lot: yes
+lof: yes
+site: bookdown::bookdown_site
+description: "Template de relatório da ABJ."
+---
+
+```{r setup, include = FALSE}
+options(xtable.comment = FALSE)
+
+knitr::opts_chunk$set(echo = F, message = F, comment = F, warning = F)
+options(OutDec = ',')
+options(knitr.table.format = 'markdown')
+```
+
+```{r include_table, echo = F}
+library(tidyverse)
+
+theme_set(theme(text = element_text(family = "sf")))
+
+include_table <- function(data_set, ...){
+  data_set %>%
+  xtable::xtable(...) %>%
+  print(tabular.environment = 'longtable', comment = F,
+          floating = FALSE, include.rownames = F)
+}
+
+knit_print.data.frame = function(x, ...) {
+  
+    # maybe_mutate_at <- purrr::possibly(function(d, coluna, ...){
+    #   mutate_at(d, .vars = coluna, ...)
+    # }, otherwise = x)
+    # 
+    # d <- x %>% 
+    # maybe_mutate_at(coluna = 'nome2', fix_labels)
+    # 
+    #  maybe_mutate_at <- purrr::possibly(function(d, coluna, ...){
+    #   mutate_at(d, .vars = coluna, ...)
+    # }, otherwise = d)
+    # 
+    # d <- d %>% 
+    # maybe_mutate_at(coluna = 'area', fix_labels)
+    # 
+    # nomes <- names(d)
+    # 
+    # names(d) <- case_when(
+    #   nomes == "n" ~ "Frequência",
+    #   nomes == "p" ~ "Percentual", 
+    #   nomes == "p_acum" ~ "Percentual Acumulado",
+    #   nomes == "nome2" ~ "Nome da Empresa ou Grupo",
+    #   nomes == "assunto_final" ~ "Causa de pedir (Assunto)",
+    #   TRUE ~ stringr::str_to_title(nomes)
+    # )
+  
+    res <- capture.output(x %>% 
+          xtable::xtable(...) %>% 
+          print(tabular.environment = 'longtable', comment = F,
+          floating = FALSE, include.rownames = F))
+                                                                                                
+    res %>% 
+      paste0(collapse = '\n') %>%                                             
+      knitr::asis_output()
+}
+```
+

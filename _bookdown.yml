@@ -1,0 +1,9 @@
+book_filename: bookdown
+clean: [bookdown.bbl]
+language:
+  label:
+    figure: "Figura "
+    table: "Tabela "
+  ui:
+    edit: "Edit"
+    chapter_name: "Capítulo "
