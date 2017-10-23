@@ -1,1 +1,23 @@
 # Machine learning
+
+## Legal docket-entry classification: where machine learning stumbles
+
+- Author: Ramesh Nallapati, Christopher D. Manning
+- Link: https://nlp.stanford.edu/pubs/D08-1046.pdf
+- keywords: docket-entry, classification
+
+In US courts, the relevant events in a case are summarized chronologically as brief descriptions. These descriptions are called docket-entries. It is a hard problem to automatically classify these docket-entries by type. The paper studies how to classify whether, in  given docket-entry for "summary judgement" (OSJ), the OSJ was granted or not. The paper finds that standard models, such as SVM based on bag-of-words, don't have optimal classification. A model that takes into account propositional logic has a higher predictive power.
+
+Data: 5,595 docket-entries that were hand-labeled by a single legal expert as OSJ or not OSJ. The 1,848 OSJ docket-entries were labeled as granted or not granted.
+
+Preprocessing: Removed punctuation, casefold and stopwords. Performed stemming.
+
+Standard SVM: Bag-of-words for unigrams and bigrams on the whole data. Several features are correlated to the label but have no predictive power, e.g., "opinion", "memorandum", $\ldots$
+
+SVM on hand-picked features: Bag-of-words for unigrams selected by humans. Better performance.
+
+Problem: While SVM is based on an additive model, propositional logics has a different structure. Example: although "moot" and "not" have negative values, "not moot" has a positive value. 
+
+New classifier: A deterministic propositional model based on expert. An entry is positive if any sentence in the description is positive. A sentence is positive if the multiplication of the unigram values in the sentence is positive. Although naive, performs better than SVM.
+
+Challenge: Build classifiers that capture semantics of natural language. The difficult part is that the semantics is defined by non-linear associations between words that are distant from one another (in different sentences).
