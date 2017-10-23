@@ -1,1 +1,92 @@
 # Law and Economics
+
+## Empirical evaluation of law: The dream and the nightmare
+
+[@donohue2015empirical]
+
+## The Priest-Klein hypotheses: Proofs and generality
+
+- Author: Yoon-Ho Alex Lee, Daniel Klerman
+- Link: https://ac.els-cdn.com/S0144818816300291/1-s2.0-S0144818816300291-main.pdf?_tid=353ca924-b0e5-11e7-b7da-00000aab0f6c&acdnat=1507988594_6b1e434199243ddb26cf42d6184017b4
+- Year: 2016
+- keywords: litigation, selection, priest and klein, decision theory, game theory
+
+[@priest1984selection] is very famous for the hypothesized "tendency toward 50 percent plaintiff victories". [@lee2016priest] argues that the original paper is not very clear in a mathematical sense, so it demands a serious formalization. The main goal of this paper is to prove or disprove the P&K hypothesis using a tough mathematical formulation.
+
+According to the authors, there are 6 hypotheses attributable to Priest and Klein:
+
+1. Disputes selected for litigation (as opposed to settlement) will not constitute a random sample nor a representative sample of all disputes.
+
+2. As the parties error diminishes and the litigation rates declines, the proportion of plaintiff victories approaches 50%.
+
+3. Regardless of legal standard, the plaintiff trial win rate exhibit "a strong bias toward fifty percent" as compared to the plaintiff trial win rate that would be observerd if every case went to trial.
+
+4. If the defendant would lose more from an adverse judgement than the plaintiff would gain, then the plaintiff will win less than fifty percent of the litigated cases. Conversely, if the plaintiff has more to gain, then the plaintiff will win more than fifty percent of the cases.
+
+5. The plaintiff trial win rate will be unrelated to the shape of the distribution of disputes. This hypothesis is about the plaintiff win rate in the limit as the parties become increasingly accurate in predicting trial outcomes. 
+
+6. Because selection effects are strong, no inferences can be made about the law or legal decisionmakers from the plaintiff win rate. Rather, "the proportion of observerd plaintiff victores will tend to remains constant".
+
+The authors prove or disprove those hypothesis by using a mathematical formulation of the Priest and Klein setting. They use a particular one, but through this text i'll reproduce their arguments using a similar version proposed on an unpublished papaer by [@gelbach2016reduced].
+
+Almost every model for litigation starts with 
+
+- $Q_p$, the probability of plaintiff victory atributed by the plaintiff (possibly random). 
+- $Q_d$, the probability of plaintiff victory atributed by the defendant (possibly random).
+- $c_p$, the cost of litigation for the plaintiff.
+- $c_d$, the cost of litigation for the defendant (possibly null).
+- $s_p$, the cost of pre-processual settlement for the plaintiff.
+- $s_d$, the cost of pre-processual settlement for the defendant.
+- A joint probability distribution on $(Q_p, Q_d)$
+- A bernoulli random variable $\mathcal{L}$ indicating whether or not the ltigation ocurred.
+- A bernoulli random variable $\mathcal{P}$ indicating whether or not the plaintiff won.
+- A litigation rule $L(q_p, q_d) = \mathbb{E}[\mathcal{L}|Q_d = q_d, Q_p = q_p]$ that gives the probability of litigation given the parties subjective belief.
+- The probability of win of the plaintiff when the litigation occurred $P(q_d, q_d) = \mathbb{E}[\mathcal{P}|\mathcal{L}=1, Q_d = q_d, Q_p = q_p]$
+
+Priest and Klein paper adds some parameters to the usual setting: $J$, $\alpha$, $Y$, $Y_d$ and $Y_p$. $Y$ is a random quantity that indicates the true quality of the case and $Y_d$ and $Y_p$ are noisy approximations of $Y$ that are accessible for the parties. $Y$ and $y^*$ are numerical representations of lawsuit's variability and court decision criterion: if $Y > y^*$, some threshold number defined by the court, the plaintiff wins the case.
+
+Encoding costs to the decision process, $J$ is the expected cost to the defendant if the plaintiff wins and $J_p = \alpha J$ is the benefits for the plaintiff (if she wins). $\alpha$ moderates the stakes. If $\alpha = 1$, the stakes are symmetric, and $\alpha$ $>$ or $<$ than 1 indicates stakes that favors plaintffs and defendants, respectively. 
+
+Two important quantities for the selection of cases for litigation are 
+
+1. Plaintiff's expected win: $q_pJ\alpha-c_p$
+2. Defendant's expected cost: $q_dJ+c_d$
+
+Those quantities are important because [@priest1984selection] states that " $q_pJ\alpha-c_p+s_p > q_dJ+c_d-s_d$ is a sufficient condition for litigation". The intuition behind this statement comes from the description of those quantitites:
+
+1. $q_dJ+c_d-s_d$ is the largest amount the defendant is willing to pay. There's a lawsuit when the plaititff thinks that this number is too small. 
+2. $q_pJ\alpha-c_p+s_p$ is the lowest amount the defendant is willing to receive.  There's a lawsuit when the plaititff defendant thinks that this number is too high. 
+
+[@lee2016priest] claims that [@priest1984selection] uses this condition not only as sufficient but also as a necessary one, altough neither they explictly mention why nor I could find it explictly noted on the original paper. Through this text I'll act as if this was true.
+
+Doing some algebra we get that the litigation condition is equivalent to
+
+$$ q_p > \frac{q_d}{\alpha} +  \frac{c_p + c_d - s_d-s_p}{\alpha J} $$
+
+That will therefore be called Landes-Posner-Gould (LPG) condition, as the authors did.
+
+To follow the demonstrations on the paper, we only need to add probability measures on the setting defined above. Different from [@priest1984selection], here the parties also have opinions on $Y$. The setting may be resumed on a small set of claims:
+
+- $Y \sim N(0,1)$ and $\epsilon_p \sim \epsilon_d \sim N(0,\sigma)$, all independent.
+- $Y_p = Y + \epsilon_p$ and $Y_d = Y + \epsilon_d$.
+- The parties has prior beliefs on $Y$ that are represented by $g_p$ and $g_d$, respectively.
+
+The decision procedures of the parties follows the following steps:
+
+1. Both of them have prior opinions on the probability of a plaitiff's win given by $G_p(Y < y^*)$ and $G_d(Y < y^*)$.
+2. They observe a noisy measure of $Y$, $Y_p$ and $Y_d$.
+3. They updates their prior beliefs using using the normal likelihood and the $g_p$ prior.
+4. Their posteriors, $Y|Y_p = y_p$ and $Y|Y_d=y_d$, produce posetrior probabilities of plaitinff's win, given by $\mathbb{P}(Y \leq y^*|Y_i = y_i)$, $i \in \{p,d\}$.
+5. LPG's selects cases for litigation based on the posterior probabilities.
+
+The original paper doesn't tell this story but gives the posterior inferences:
+
+$$ q_p = \Phi\left(\frac{Y_p - y^*}{\sigma}\right) \text{ and }q_d = \Phi\left(\frac{Y_d-y^*}{\sigma}\right)$$
+
+This is equivalent as setting $g_p \propto 1$ on the real line. In this setting, $Y_p ~ N(Y, \sigma)$, with a known $\sigma$, so that the posterior inference on $Y$ is equivalent to doing normal bayesian inference on a sample of size one and a flat prior. This gives us that $Y|Y_p=y_p \sim N(Y_p, \sigma)$, and then $\mathbb{P}(Y \leq y^*|Y_i = y_i) = \Phi\left(\frac{y^*-Y_i}{\sigma}\right)$.
+
+Until now, nothing has been said on the population distribution of $Y$. [@priest1984selection] do not On that case, the probability of plaintiff win is given by
+
+$$W(y|y^*) = \int \int_{R(y,y^*)}\left(\frac{1}{\sqrt{2\pi\sigma^2}}\right)^2f_{Q_p}(u)f_{Q_d}(v)dudv$$
+
+where $R(y, y^*) = \left\{u,v: \Phi\left(\frac{y+u-y^*}{\sigma}\right) - \Phi\left(\frac{y+v - y^*}{\sigma}\right) > K\right\}$

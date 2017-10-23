@@ -1,10 +1,11 @@
 bookdown::gitbook:
+  dev: svglite
   css: css/style.css
   config:
     toc:
       collapse: none
       before: |
-        <li><a href="./">A Book Example</a></li>
+        <li><a href="./">ABJ Syllabus</a></li>
       after: |
         <li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
     download: [pdf, epub]

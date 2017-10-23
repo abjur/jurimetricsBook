@@ -1,5 +1,5 @@
 ---
-title: "Book Example"
+title: "ABJ Syllabus"
 author: "Associação Brasileira de Jurimetria"
 date: "`r format(Sys.Date(), '%d de %B de %Y')`"
 documentclass: report
@@ -10,64 +10,86 @@ colorlinks: yes
 lot: yes
 lof: yes
 site: bookdown::bookdown_site
-description: "Template de relatório da ABJ."
+description: " A track of papers we read and papers we collect to read in future."
 ---
 
 ```{r setup, include = FALSE}
-options(xtable.comment = FALSE)
+#options(xtable.comment = FALSE)
 
-knitr::opts_chunk$set(echo = F, message = F, comment = F, warning = F)
+knitr::opts_chunk$set(echo = F, message = F, comment = F, warning = F, fig.height = 5, fig.width = 9)
 options(OutDec = ',')
-options(knitr.table.format = 'markdown')
+#options(knitr.table.format = 'markdown')
 ```
 
 ```{r include_table, echo = F}
 library(tidyverse)
 
-theme_set(theme(text = element_text(family = "sf")))
-
-include_table <- function(data_set, ...){
-  data_set %>%
-  xtable::xtable(...) %>%
-  print(tabular.environment = 'longtable', comment = F,
-          floating = FALSE, include.rownames = F)
-}
-
-knit_print.data.frame = function(x, ...) {
+if (!knitr:::is_html_output()){
   
-    # maybe_mutate_at <- purrr::possibly(function(d, coluna, ...){
-    #   mutate_at(d, .vars = coluna, ...)
-    # }, otherwise = x)
-    # 
-    # d <- x %>% 
-    # maybe_mutate_at(coluna = 'nome2', fix_labels)
-    # 
-    #  maybe_mutate_at <- purrr::possibly(function(d, coluna, ...){
-    #   mutate_at(d, .vars = coluna, ...)
-    # }, otherwise = d)
-    # 
-    # d <- d %>% 
-    # maybe_mutate_at(coluna = 'area', fix_labels)
-    # 
-    # nomes <- names(d)
-    # 
-    # names(d) <- case_when(
-    #   nomes == "n" ~ "Frequência",
-    #   nomes == "p" ~ "Percentual", 
-    #   nomes == "p_acum" ~ "Percentual Acumulado",
-    #   nomes == "nome2" ~ "Nome da Empresa ou Grupo",
-    #   nomes == "assunto_final" ~ "Causa de pedir (Assunto)",
-    #   TRUE ~ stringr::str_to_title(nomes)
-    # )
-  
-    res <- capture.output(x %>% 
-          xtable::xtable(...) %>% 
-          print(tabular.environment = 'longtable', comment = F,
-          floating = FALSE, include.rownames = F))
-                                                                                                
-    res %>% 
-      paste0(collapse = '\n') %>%                                             
+  knit_print.data.frame = function(x, ...) {
+    
+    res <- capture.output(x %>%
+          xtable::xtable(...) %>%
+          print(type = 'latex', tabular.enviroment = 'longtable', comment = F, include.rownames = F))
+
+    res %>%
+      paste0(collapse = '\n') %>%
+      stringr::str_replace_all(stringr::fixed("{table}[ht]"), "{table}[H]") %>% 
       knitr::asis_output()
+  }
+
+  kable = knit_print.data.frame
+  
+  # theme if Latex
+  {theme_minimal(12) +
+    theme(text = element_text(family = "sf",colour = '#0c0c0c', face = 'plain'))} %>% 
+    theme_set()
+  
+} else {
+  kable <- knitr::kable
+  
+  #' Theme if html
+  {theme_minimal(15)+
+      theme(text = element_text(family = "helvetica", colour = '#3a3a3a', face = 'plain'))} %>% 
+      theme_set()
 }
+
 ```
 
+# Introduction {#introducao-2}
+
+Para que o seu `bookdown` funcione tanto na web quanto no pdf, você deve evitar usar marcadores que dependem do contexto.
+
+Para fazer citações você deve usar [@Weinstein1997] ou @Weinstein1997. Isso também funciona pra pacotes [@R-base] ou @R-base. Para criar uma figura, é preferível que você use o `print` padrão do `knitr`. A label do gráfico será `fig:label-do-chunk`. Você pode citar fazendo \@ref(fig:label-do-chunk).
+
+```{r label-do-chunk, fig.cap = "Este é um gráfico."}
+qplot(1:10, 1:10) + 
+  labs(x = "Esse é o texto do x.", y = "Esse é o texto do y.")
+```
+
+Se você precisar importar uma imagem de fora do R, é melhor que você faça `![]()`, a despeito do que diz o Yihui.
+
+<!-- ![Essa é a caption.](imgs/logoabj.png){#fig:logo} -->
+
+Se você estiver com muita vontade de seguir os ensinamentos do mestre, você pode usa o `knitr::include_graphics`, mas vai precisar setar `dpi = NA`.
+
+```{r mathquill, echo=FALSE, fig.align='center', fig.cap='The RStudio addin to help input LaTeX math.'}
+knitr::include_graphics('imgs/logo_abj.png', dpi = NA)
+```
+
+Essa forma tem duas vantagens: 
+
+1. A label fica no mesmo formato das demais.
+2. Você pode setar o `fig.height` e o `fig.width`.
+
+Escolhendo qualquer uma das formas, não é uma boa importar imagens que vieram de dentro de pastas. Você terá problemas com o `path` dos arquivos. O `bookdown` não copia as pastas pra dentro do `_book`, você precisará fazer isso manualmente.
+ 
+Outro tipo de referência interessante é a referência a subseções. Você pode usar [essa sintaxe][objetivos] pra ir pra seção de objetivos. Você também pode usar \@ref(objetivos), contanto que tenha colocado {#objetivos} na definição da seção.
+ 
+Por fim, pra inserir tabelas, use apenas `kable`. Esse `book` sabe o que fazer dependendo do `output`.
+
+```{r tabela}
+mtcars %>% 
+  head(5) %>% 
+  kable(caption = "Essa é uma tabela.")
+```
