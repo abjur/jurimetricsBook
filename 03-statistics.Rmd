@@ -1,1 +1,63 @@
 # Statistics
+
+## Questionnaires
+
+### Questionnaire design
+
+- Author: U.S. Survey Research
+- Link: http://www.pewresearch.org/methodology/u-s-survey-research/questionnaire-design/
+- keywords: questionnaire design
+
+Considerable differences between choices in
+open- and closed-ended questions.
+In closed-ended questions, respondents rarely
+choose the "others" alternative, even
+when they agree with it.
+A common practice is to perform a pilot study
+with open-ended alternatives followed by a
+definitive study with closed-ended questions.
+
+Number of alternatives should be generally be kept
+relatively small. Otherwise, lack of memory and 
+attention might generate errors.
+Many alternatives are ok for a question such that the
+respondent already knows the answer,
+e.g., "what is your religion?"
+
+The order of the alternatives should generally be randomized.
+In case of ordinal variables, the order should be randomized
+between top to bottom and bottom to top.
+This does not avoid the placement biase, but dilutes it
+accross the alternatives.
+
+Questions should be asked in a clear and direct fashion.
+Language should be as simple as possible and never more
+sophisticated than the education level of respondents.
+One question should be asked at a time. Questions that
+try to approach two or more concepts at a time should be avoided.
+
+There is a bias in which people generally choose the option
+"agree" in questions with the alternatives "agree" and "disagree".
+
+Wording of answers strongly influences the responses.
+Words that are too positive or negative can bias the answer.
+The context provided in the question also changes the answer.
+
+Respondents have a bias towards "socially desirable" answers, e.g.,
+drug usage is often understated and charity overstated.
+Alternatives that describe a motivation can often make it easier
+for a person to choose a socially undesirable response.
+
+The order of the questions affects the answers.
+Previous questions can be used as context for later questions.
+Questions should be grouped by topic and unfolded in a logical order.
+Interesting and engaging questions should be mixed with less interesting questions.
+
+Pilot test: Useful when testing new questions.
+An application of the questionnaire.
+
+Focus groups: Several people debate the survey topic.
+Useful to understand what topics are hot, how 
+they understand these topics and how
+they interpret the questions.
+Moderator typically asks broad questions.
